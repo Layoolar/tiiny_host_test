@@ -55,7 +55,10 @@ yarn start
   - Include **minimum** and **maximum width** constraints
 - **Custom Cell Rendering**  
   - Allows sorting through ALL rows:
-   
+
+## 📊 Extra Features
+- **Inline Editing**  
+  - Double Click Cell to Edit Content
 
 ---
 
