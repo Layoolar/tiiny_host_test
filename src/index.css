@@ -1,0 +1,425 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color:black;
+  background-color: white;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+color:black;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* CSS Variables for easy customization */
+:root {
+  --row-height: 35px;
+  --header-height: 60px;
+  --min-column-width: 100px;
+  --max-column-width: 500px;
+  --border-color: #ccc;
+  --light-border-color: #eee;
+  --subtle-border-color: #f0f0f0;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-light: #f8f9fa;
+  --background-selected: #e9ecef;
+  --numeric-bg: #f0f8ff;
+  --numeric-color: #2c5aa0;
+  --text-bg: #fafafa;
+  --text-color: #333;
+  --shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Base container */
+.datagrid-container {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Controls section */
+.datagrid-controls {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-light);
+}
+
+.datagrid-controls-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.datagrid-select {
+  padding: 5px;
+  min-width: 200px;
+  max-width: 100%;
+  flex: 1 1 auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.datagrid-button {
+  padding: 5px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.datagrid-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.datagrid-button.active {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.datagrid-button.secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
+}
+
+.datagrid-button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Legend */
+.datagrid-legend {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.datagrid-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.datagrid-legend-color {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.datagrid-legend-color.numeric {
+  background-color: var(--numeric-bg);
+}
+
+.datagrid-legend-color.text {
+  background-color: var(--text-bg);
+}
+
+.datagrid-legend-tip {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+}
+
+/* Table container */
+.datagrid-table-container {
+  height: calc(100% - 80px);
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+/* Header */
+.datagrid-header {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  width: 100%;
+  height: var(--header-height);
+  border-bottom: 2px solid var(--border-color);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.datagrid-header-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.datagrid-header-cell {
+  height: 100%;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: white;
+  position: relative;
+  min-width: var(--min-column-width);
+  max-width: var(--max-column-width);
+  font-weight: bold;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-color);
+}
+
+.datagrid-header-cell:last-child {
+  border-right: none;
+}
+
+.datagrid-header-cell.sorted {
+  background-color: var(--background-selected);
+}
+
+.datagrid-header-text {
+  max-width: 100%;
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  width: calc(100% - 8px);
+}
+
+.datagrid-resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 8px;
+  cursor: col-resize;
+  background-color: transparent;
+}
+
+.datagrid-resize-handle.active {
+  background-color: var(--primary-color);
+}
+
+/* Content area */
+.datagrid-content {
+  height: calc(100% - var(--header-height));
+  width: 100%;
+  overflow: auto;
+  overscroll-behavior: none;
+}
+
+.datagrid-content-inner {
+  position: relative;
+  min-width: 100%;
+}
+
+/* Rows */
+.datagrid-row {
+  position: absolute;
+  height: var(--row-height);
+  display: flex;
+}
+
+/* Cells */
+.datagrid-cell {
+  height: 100%;
+  min-width: var(--min-column-width);
+  max-width: var(--max-column-width);
+  padding: 8px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--subtle-border-color);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  border-right: 1px solid var(--light-border-color);
+}
+
+.datagrid-cell:last-child {
+  border-right: none;
+}
+
+.datagrid-cell.editing {
+  padding: 0;
+  cursor: text;
+}
+
+.datagrid-cell.numeric {
+  background-color: var(--numeric-bg);
+  color: var(--numeric-color);
+  font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+  font-weight: 500;
+  text-align: right;
+}
+
+.datagrid-cell.text {
+  background-color: var(--text-bg);
+  color: var(--text-color);
+  font-family: inherit;
+  font-weight: normal;
+  text-align: left;
+}
+
+.datagrid-cell-content {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Edit input */
+.datagrid-edit-input {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--primary-color);
+  padding: 6px 10px;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-family: inherit;
+  background-color: #fff;
+  color: var(--text-color);
+  outline: none;
+}
+
+.datagrid-edit-input.numeric {
+  text-align: right;
+}
+
+.datagrid-edit-input.text {
+  text-align: left;
+}
+
+/* Demo styles */
+.demo-container {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.demo-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.demo-grid-wrapper {
+  height: calc(100% - 80px);
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .datagrid-controls {
+    padding: 8px;
+  }
+  
+  .datagrid-controls-main {
+    gap: 8px;
+  }
+  
+  .datagrid-select {
+    min-width: 150px;
+  }
+  
+  .datagrid-button {
+    padding: 4px 12px;
+    font-size: 14px;
+  }
+  
+  .datagrid-legend {
+    gap: 10px;
+    font-size: 11px;
+  }
+  
+  .datagrid-cell {
+    padding: 6px 8px;
+  }
+  
+  .datagrid-header-cell {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-container {
+    padding: 10px;
+  }
+  
+  .datagrid-controls-main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .datagrid-select {
+    min-width: auto;
+  }
+  
+  .datagrid-legend {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
